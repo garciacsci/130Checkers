@@ -3,9 +3,9 @@
 include 'dbConnect.php'; // Connect to database
 
 if ($_SERVER['REQUEST_METHOD'] == 'POST' && $_GET['action'] == 'register') {
-    $username = filter_input(INPUT_POST, 'username', FILTER_SANITIZE_STRING);
+    $username = filter_input(INPUT_POST, 'username', FILTER_UNSAFE_RAW);
     $email = filter_input(INPUT_POST, 'email', FILTER_SANITIZE_EMAIL);
-    $password = filter_input(INPUT_POST, 'password', FILTER_SANITIZE_STRING);
+    $password = filter_input(INPUT_POST, 'password', FILTER_UNSAFE_RAW);
 
     // TODO: Hash password before storing it
     $hashedPassword = password_hash($password, PASSWORD_DEFAULT);
@@ -26,8 +26,8 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST' && $_GET['action'] == 'register') {
 }
 
 if ($_SERVER['REQUEST_METHOD'] == 'POST' && $_GET['action'] == 'login') {
-    $username = filter_input(INPUT_POST, 'username', FILTER_SANITIZE_STRING);
-    $password = filter_input(INPUT_POST, 'password', FILTER_SANITIZE_STRING);
+    $username = filter_input(INPUT_POST, 'username', FILTER_UNSAFE_RAW);
+    $password = filter_input(INPUT_POST, 'password', FILTER_UNSAFE_RAW);
 
     try {
         $sql = "SELECT password FROM Players WHERE username = :username";

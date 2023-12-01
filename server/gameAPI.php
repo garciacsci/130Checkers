@@ -7,7 +7,7 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST' && $_GET['action'] == 'endGame') {
     $game_id = filter_input(INPUT_POST, 'game_id', FILTER_SANITIZE_NUMBER_INT);
     $player_id = filter_input(INPUT_POST, 'player_id', FILTER_SANITIZE_NUMBER_INT);
     $score = filter_input(INPUT_POST, 'score', FILTER_SANITIZE_NUMBER_INT);
-    $duration = filter_input(INPUT_POST, 'duration', FILTER_SANITIZE_STRING);
+    $duration = filter_input(INPUT_POST, 'duration', FILTER_UNSAFE_RAW);
     $turns = filter_input(INPUT_POST, 'turns', FILTER_SANITIZE_NUMBER_INT);
 
     try {
