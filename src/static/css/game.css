@@ -1,10 +1,30 @@
-/* body {
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    height: 100vh;
+body {
+    font-family: Arial, sans-serif;
     margin: 0;
-} */
+    padding: 0;
+    background-color: rgb(24,39,73);
+    text-align: center;
+}
+header {
+    display: flex;
+    /* justify-content: center; */
+    background-color: rgb(180,43,54);
+    color: #fff;
+    text-align: center;
+    padding: 5px;
+    margin-bottom: 50px;
+}
+header h1{
+    color: #fff;
+    align-self: center;
+    
+}
+.left, .right{
+    flex: 1;
+}
+.center{
+    flex:4;
+}
 
 table{
     /* table-layout: fixed; */
@@ -12,12 +32,13 @@ table{
     margin: auto;
     /* width: 75%; 
     height: 75%; */
-    width: 80vh;
-    max-width: 80vw;   
-    height: 80vh;
-    max-height: 80vw; 
+    width: 70vh;
+    max-width: 70vw;   
+    height: 70vh;
+    max-height: 70vw; 
     
 }
+
 /* td{
     border-style:solid;
     display: inline-block;
@@ -27,8 +48,8 @@ td:empty{
     /* padding-bottom: 20%; */
     /* width: 12.5%; 100% / 8 columns */
     /* padding-bottom: 12.5%; 12.5% to make it a square */
-    width: 5%; /* 100% / 8 columns */
-    padding-bottom: 5%; /*12.5% to make it a square*/
+    width: 10%; /* 100% / 8 columns */
+    padding-bottom: 10%; /*12.5% to make it a square*/
 }
 
 tr:nth-child(odd) td:nth-child(odd){
@@ -48,6 +69,7 @@ tr:nth-child(even) td:nth-child(odd){
     height: 65%;
     margin: auto;
     border-radius: 50%;
+    text-align: center;
 }
 .checker_piece:hover{
     cursor:pointer;
@@ -57,6 +79,20 @@ tr:nth-child(even) td:nth-child(odd){
 }
 .checker_piece.player2{
     background-color: white;
+    
+    /* background-image: url('../src/static/images/Chess_klt45.svg'); */
+}
+.checker_piece.player1.king{
+    background-image: url('../images/black_king.svg');
+    background-repeat: no-repeat;
+    background-position: center;
+    background-size: 60%;
+}
+.checker_piece.player2.king{
+    background-image: url('../images/white_king.svg');
+    background-repeat: no-repeat;
+    background-position: center;
+    background-size: 60%;
 }
 .possible_move_circle{
     background-color:rgb(187, 187, 187);
@@ -65,6 +101,16 @@ tr:nth-child(even) td:nth-child(odd){
     margin: auto;
     border-radius: 50%;
     opacity: 65%;
+}
+#main_page_div{
+    display: flex;
+}
+#timer_div, #board_table_div, #main_right_div{
+    flex: 1;
+}
+#timer{
+    font-size: 2em;
+    color:white;
 }
 
 

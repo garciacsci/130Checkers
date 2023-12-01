@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Count Up Timer</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            text-align: center;
+            margin: 50px;
+        }
+        #timer {
+            font-size: 2em;
+        }
+    </style>
+</head>
+<body>
+
+<h1>Count Up Timer</h1>
+<p id="timer">0:00</p>
+
+<script>
+    // Timer variables
+    let seconds = 0;
+    let minutes = 0;
+
+    // Function to update the timer display
+    function updateTimer() {
+        document.getElementById('timer').innerHTML = `${minutes}:${(seconds < 10) ? '0' : ''}${seconds}`;
+    }
+
+    // Function to increment the timer
+    function incrementTimer() {
+        seconds++;
+        if (seconds === 60) {
+            seconds = 0;
+            minutes++;
+        }
+        updateTimer();
+    }
+
+    // Set up the timer interval (1000 milliseconds = 1 second)
+    const timerInterval = setInterval(incrementTimer, 1000);
+
+    // Stop the timer after a certain duration (e.g., 5 minutes)
+    const stopDuration = 5 * 60 * 1000; // 5 minutes in milliseconds
+    setTimeout(() => {
+        clearInterval(timerInterval);
+        alert('Timer has reached 5 minutes!');
+    }, stopDuration);
+</script>
+
+</body>
+</html>

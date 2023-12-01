@@ -6,160 +6,32 @@
     <title>checkers</title>
     <link rel="stylesheet" href="../src/static/css/game.css">
     <script src="../src/js/game.js"></script>
+    <script src="../src/classes/CheckerGame.js"></script>
+    <script src="../src/classes/Board.js"></script>
+    <script src="../src/classes/Timer.js"></script>
 </head>
 
-<body onload="createBoard(8)">
-    <div id="board_table_div"> 
-        <!-- <table>
-            <tbody>
-                <tr>
-                    <th>8</th>
-                    <td></td>
-                    <td>
-                        <div class="checker_piece player2">&nbsp;</div>
-                    </td>
-                    <td></td>
-                    <td>
-                        <div class="checker_piece player2">&nbsp;</div>
-                    </td>
-                    <td></td>
-                    <td>
-                        <div class="checker_piece player2">&nbsp;</div>
-                    </td>
-                    <td></td>
-                    <td>
-                        <div class="checker_piece player2">&nbsp;</div>
-                    </td>
-                    <td></td>
-                    <td></td>
-                </tr>
-                <tr>
-                    <th>7</th>
-                    <td></td>
-                    <td></td>
-                    <td></td>
-                    <td></td>
-                    <td></td>
-                    <td></td>
-                    <td></td>
-                    <td></td>
-                    <td></td>
-                    <td></td>
-                </tr>
-                <tr>
-                    <th>6</th>
-                    <td></td>
-                    <td></td>
-                    <td></td>
-                    <td></td>
-                    <td></td>
-                    <td></td>
-                    <td></td>
-                    <td></td>
-                    <td></td>
-                    <td></td>
-                </tr>
-                <tr>
-                    <th>5</th>
-                    <td></td>
-                    <td></td>
-                    <td></td>
-                    <td></td>
-                    <td></td>
-                    <td></td>
-                    <td></td>
-                    <td></td>
-                    <td></td>
-                    <td></td>
-                </tr>
-                <tr>
-                    <th>4</th>
-                    <td></td>
-                    <td></td>
-                    <td></td>
-                    <td></td>
-                    <td></td>
-                    <td></td>
-                    <td></td>
-                    <td></td>
-                    <td></td>
-                    <td></td>
-                </tr>
-                <tr>
-                    <th>3</th>
-                    <td></td>
-                    <td></td>
-                    <td></td>
-                    <td></td>
-                    <td></td>
-                    <td></td>
-                    <td></td>
-                    <td></td>
-                    <td></td>
-                    <td></td>
-                </tr>
-                <tr>
-                    <th>2</th>
-                    <td></td>
-                    <td></td>
-                    <td></td>
-                    <td></td>
-                    <td></td>
-                    <td></td>
-                    <td></td>
-                    <td></td>
-                    <td></td>
-                    <td></td>
-                </tr>
-                <tr>
-                    <th>1</th>
-                    <td>
-                         <div class="checker_piece player1">&nbsp;</div> 
-                    </td>
-                    <td></td>
-                    <td></td>
-                    <td></td>
-                    <td></td>
-                    <td></td>
-                    <td></td>
-                    <td></td>
-                    <td></td>
-                    <td></td>
-                </tr>
-                <tr>
-                    <th>2</th>
-                    <td></td>
-                    <td></td>
-                    <td></td>
-                    <td></td>
-                    <td></td>
-                    <td></td>
-                    <td></td>
-                    <td></td>
-                    <td></td>
-                    <td></td>
-                </tr>
-                <tr>
-                    <th>2</th>
-                    <td></td>
-                    <td></td>
-                    <td></td>
-                    <td></td>
-                    <td></td>
-                    <td></td>
-                    <td></td>
-                    <td></td>
-                    <td></td>
-                    <td></td>
-                </tr>
-                
-            </tbody>
-        </table> -->
+<body onload="initGame(8)">
+    
+    <header>
+        <div id="img_div" class="left"><img id="header_img" src="https://dxbhsrqyrr690.cloudfront.net/sidearm.nextgen.sites/gobulldogs.com/images/sng_2022/Main_school-logo.svg"></div>
+        <div class="center" id="main_header"><h1>CSCI 166: Checkers Game</h1></div>
+        <div class="right"></div>
+        
+    </header>
+    <div id="main_page_div">
+        <div id="timer_div">
+            <p id="timer">0:00</p>
+            <button onclick="startTimer()">Start timer</button>
+            <button onclick="stopTimer()">Stop timer</button>
+            <button onclick="resetTimer()">Reset timer</button>
+        </div>
+        <div id="board_table_div"></div>
+        <div id="main_right_div"></div>
     </div>
     <br>
     <input id="board_dim" type="number" min="8" value="8" style="text-align: center;">
-    <input type="button" value="Change size of board" onclick="createBoard(document.getElementById('board_dim').value)">
-    <button onclick="getPossibleMoves()">Get Possible Moves</button>
+    <input type="button" value="Change size of board" onclick="initGame(document.getElementById('board_dim').value)">
 </body>
 
 </html>
