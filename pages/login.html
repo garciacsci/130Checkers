@@ -7,7 +7,7 @@
 </head>
 <body>
     <div class="container">
-        <form action="#" method="POST" class="login-form">
+        <form id="loginForm" class="login-form"> <!-- Removed action and method attributes -->
             <h2>Login</h2>
             <label for="username">Username:</label>
             <input type="text" id="username" name="username" required>
@@ -17,6 +17,9 @@
 
             <button type="submit">Login</button>
         </form>
+        <div id="message"></div> <!-- Added div for messages -->
     </div>
+
+    <script src="../src/js/login.js"></script>
 </body>
 </html>
