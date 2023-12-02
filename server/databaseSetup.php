@@ -21,16 +21,20 @@ try {
     $sql = "CREATE TABLE IF NOT EXISTS Players (
                 player_id INT AUTO_INCREMENT PRIMARY KEY,
                 username VARCHAR(255) NOT NULL,
-                email VARCHAR(255)
+                email VARCHAR(255),
+                password VARCHAR(255)
             )";
     $conn->exec($sql);
     echo "Table Players created successfully<br>";
 
+    // Hash password for dummy data
+    $dummyPassword = password_hash('password123', PASSWORD_DEFAULT);
+
     // Insert dummy data into Players table
-    $sql = "INSERT INTO Players (username, email) VALUES 
-            ('player1', 'player1@example.com'),
-            ('player2', 'player2@example.com'),
-            ('player3', 'player3@example.com')";
+    $sql = "INSERT INTO Players (username, email, password) VALUES 
+            ('player1', 'player1@example.com', '$dummyPassword'),
+            ('player2', 'player2@example.com', '$dummyPassword'),
+            ('player3', 'player3@example.com', '$dummyPassword')";
     $conn->exec($sql);
     echo "Dummy player records inserted successfully<br>";
 

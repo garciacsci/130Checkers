@@ -1,5 +1,7 @@
 <?php
 
+header('Content-Type: application/json');
+
 include 'dbConnect.php'; // Connect to database
 
 if ($_SERVER['REQUEST_METHOD'] == 'GET' && $_GET['action'] == 'getLeaderboard') {
