@@ -25,3 +25,10 @@ function resetTimer(){
     timer.resetTimer()
     timer.updateTimer()
 }
+
+//assume that initGame has been called previously
+function resetGame(boardSize){
+    timer.stopTimer()
+    initGame(boardSize)
+}
+

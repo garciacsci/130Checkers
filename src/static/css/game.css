@@ -105,13 +105,25 @@ tr:nth-child(even) td:nth-child(odd){
 #main_page_div{
     display: flex;
 }
-#timer_div, #board_table_div, #main_right_div{
+#board_table_div{
+    flex: 3;
+}
+#main_right_div,#main_left_div{
     flex: 1;
+}
+#main_center_div{
+    display: flex;
+}
+#setting_div{
+    margin-left: 10px;
+}
+#timer_div{
+    margin-right: 10px;
 }
 #timer{
     font-size: 2em;
     color:white;
 }
-
-
-
+#showDialog{
+    width: 25px;
+}

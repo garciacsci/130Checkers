@@ -48,6 +48,13 @@ class CheckerGame {
                 
             }
         }
+        // let d = "<input type="image" src="../src/static/images/Simpleicons_Interface_gear-wheel-in-black.svg" id="showDialog">"
+
+        // let settings = document.createElement("input")
+        // settings.setAttribute("type","image")
+        // settings.setAttribute("src","../src/static/images/Simpleicons_Interface_gear-wheel-in-black.svg")
+        // settings.setAttribute("id","showDialog")
+        // table_div.appendChild(settings)
 
         //initialize first possible moves
         this.possibleMoves = {}
@@ -134,7 +141,12 @@ class CheckerGame {
                 //empty prev square square; fill new square with piece
 
                 //location of piece that's captured
-                let capturedPiece = this.possibleMoves[this.pieceClicked[0] + '_' + this.pieceClicked[1]][0][0]
+                // let capturedPiece = this.possibleMoves[this.pieceClicked[0] + '_' + this.pieceClicked[1]][0][0]
+                let capturedPiece = [
+                    Number(this.pieceClicked[0])+((Number(r)-Number(this.pieceClicked[0]))/Math.abs(Number(r)-Number(this.pieceClicked[0]))),
+                    Number(this.pieceClicked[1])+((Number(c)-Number(this.pieceClicked[1]))/Math.abs(Number(c)-Number(this.pieceClicked[1])))
+                ]
+
                 //global variable
                 document.getElementById('square_' + this.pieceClicked[0] + '_' + this.pieceClicked[1]).innerHTML = ""
                 this.boardModel.board[this.pieceClicked[0]][this.pieceClicked[1]]=0
@@ -183,6 +195,10 @@ class CheckerGame {
         if (!this.gameOver) {
             //delay to display alert after screen updates
             setTimeout(() => { this.handleGameOver() }, 100)
+            //current player
+            //how long the game took
+            //win or loss for current player
+            
         }
     }
 
