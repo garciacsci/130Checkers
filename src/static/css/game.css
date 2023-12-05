@@ -5,7 +5,7 @@ body {
     background-color: rgb(24,39,73);
     text-align: center;
 }
-header {
+header{
     display: flex;
     /* justify-content: center; */
     background-color: rgb(180,43,54);
@@ -25,6 +25,37 @@ header h1{
 .center{
     flex:4;
 }
+#center_buttons_div{
+    display: flex;
+    justify-content: center;
+}
+#center_buttons_div a{
+    margin:auto;
+    border-style: none;
+    padding: 10px 8%;
+    text-decoration: none;
+    color:white;
+    border-radius: 1rem;
+    transition: .20s;
+}
+#center_buttons_div a:hover{
+    background-color: rgb(215, 115, 115);
+}
+#center_buttons_div a:active{
+    background-color: rgb(197, 103, 103);
+}
+#log_out_div{
+    padding-top: 50px;
+}
+#log_out_div a{
+    /* margin-top: 50px; */
+    text-decoration: none;
+    color:white;
+}
+#log_out_div a:hover{
+    color:lightgrey
+}
+
 
 table{
     /* table-layout: fixed; */
@@ -32,10 +63,10 @@ table{
     margin: auto;
     /* width: 75%; 
     height: 75%; */
-    width: 70vh;
-    max-width: 70vw;   
-    height: 70vh;
-    max-height: 70vw; 
+    width: 75vh;
+    max-width: 75vw;   
+    height: 75vh;
+    max-height: 75vw; 
     
 }
 
@@ -52,18 +83,45 @@ td:empty{
     padding-bottom: 10%; /*12.5% to make it a square*/
 }
 
-tr:nth-child(odd) td:nth-child(odd){
+#table_board.Brown tr:nth-child(odd) td:nth-child(odd){
     background-color: rgb(234,213,175);
 }
-tr:nth-child(even) td:nth-child(even){
+#table_board.Brown tr:nth-child(even) td:nth-child(even){
     background-color: rgb(234,213,175);
 }
-tr:nth-child(odd) td:nth-child(even){
+#table_board.Brown tr:nth-child(odd) td:nth-child(even){
     background-color: rgb(167,125, 92);
 }
-tr:nth-child(even) td:nth-child(odd){
+#table_board.Brown tr:nth-child(even) td:nth-child(odd){
     background-color: rgb(167,125, 92);
 }
+
+#table_board.Blue tr:nth-child(odd) td:nth-child(odd){
+    background-color: rgb(241,230,219);
+}
+#table_board.Blue tr:nth-child(even) td:nth-child(even){
+    background-color: rgb(241,230,219);
+}
+#table_board.Blue tr:nth-child(odd) td:nth-child(even){
+    background-color: rgb(147,171, 203);
+}
+#table_board.Blue tr:nth-child(even) td:nth-child(odd){
+    background-color: rgb(147,171, 203);
+}
+
+#table_board.Green tr:nth-child(odd) td:nth-child(odd){
+    background-color: rgb(237,232, 210);
+}
+#table_board.Green tr:nth-child(even) td:nth-child(even){
+    background-color: rgb(237,232, 210);
+}
+#table_board.Green tr:nth-child(odd) td:nth-child(even){
+    background-color: rgb(107,128, 85);
+}
+#table_board.Green tr:nth-child(even) td:nth-child(odd){
+    background-color: rgb(107,128, 85);
+}
+
 .checker_piece{
     width: 65%;
     height: 65%;
@@ -74,14 +132,12 @@ tr:nth-child(even) td:nth-child(odd){
 .checker_piece:hover{
     cursor:pointer;
 }
-.checker_piece.player1{
+/* .checker_piece.player1.default{
     background-color: black;
 }
-.checker_piece.player2{
+.checker_piece.player2.default{
     background-color: white;
-    
-    /* background-image: url('../src/static/images/Chess_klt45.svg'); */
-}
+} */
 .checker_piece.player1.king{
     background-image: url('../images/black_king.svg');
     background-repeat: no-repeat;

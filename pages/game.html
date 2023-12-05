@@ -9,7 +9,6 @@
     <script src="../src/classes/CheckerGame.js"></script>
     <script src="../src/classes/Board.js"></script>
     <script src="../src/classes/Timer.js"></script>
-    
 </head>
 
 <body onload="initGame(8)">
@@ -20,10 +19,19 @@
                 src="https://dxbhsrqyrr690.cloudfront.net/sidearm.nextgen.sites/gobulldogs.com/images/sng_2022/Main_school-logo.svg">
         </div>
         <div class="center" id="main_header">
-            <h1>CSCI 166: Checkers Game</h1>
+            <h1>CSCI 130: Checkers Game</h1>
             <!-- add button to go to different pages -->
+            <div id="center_buttons_div">
+                <a href="index.html">Home</a>
+                <a href="leaderboard.html">Leaderboard</a>
+                <a href="contact.html">Contact</a>
+                <a href="help.html">Help</a>
+            </div>
+            
         </div>
-        <div class="right"></div>
+        <div class="right" id="log_out_div">
+            <a href="">Log Out</a>
+        </div>
 
     </header>
     <div id="main_page_div">
@@ -31,11 +39,12 @@
         <div id="main_center_div">
             <div id="board_table_div"></div>
             <div id="setting_div">
-                <input type="image" src="../src/static/images/Simpleicons_Interface_gear-wheel-in-black.svg" id="showDialog">
+                <input type="image" src="../src/static/images/Simpleicons_Interface_gear-wheel-in-black.svg"
+                    id="showDialog">
             </div>
         </div>
 
-        
+
         <div id="main_right_div">
             <div id="timer_div">
                 <p id="timer">0:00</p>
@@ -45,17 +54,46 @@
             </div>
 
             <!-- A modal dialog containing a form -->
-            <dialog id="favDialog">
+            <dialog id="settingsDialog">
                 <form>
                     <p>
                         <label>
-                            Favorite animal:
-                            <select>
-                                <option value="default">Choose…</option>
-                                <option>Brine shrimp</option>
-                                <option>Red panda</option>
-                                <option>Spider monkey</option>
+                            Board Color:
+                            <select id="board_color_select">
+                                <option>Brown</option>
+                                <option>Blue</option>
+                                <option>Green</option>
                             </select>
+                        </label>
+                        <br>
+                        <br>
+                        <label>
+                            P1 Piece Color:
+                            <select id="p1_piece_color_select">
+                                <option>Black</option>
+                                <option>Purple</option>
+                                <option>Red</option>
+                            </select>
+                        </label>
+                        <br>
+                        <br>
+                        <label>
+                            P2 Piece Color:
+                            <select id="p2_piece_color_select">
+                                <option>White</option>
+                                <option>Green</option>
+                                <option>Orange</option>
+                            </select>
+                        </label>
+                        <br>
+                        <br>
+                        <label>
+                            Board Size:
+                            <select id="board_size_select">
+                                <option>8</option>
+                                <option>10</option>
+                            </select>
+                            (Warning! Changing resets game)
                         </label>
                     </p>
                     <div>
@@ -65,16 +103,16 @@
                 </form>
             </dialog>
             <p>
-                
+
                 <!-- <button id="showDialog">Show the dialog</button> -->
             </p>
-            <output></output>
+            <!-- <output></output> -->
             <script src="../src/js/settings.js"></script>
         </div>
     </div>
     <br>
-    <input id="board_dim" type="number" min="8" value="8" style="text-align: center;">
-    <input type="button" value="Change size of board" onclick="resetGame(document.getElementById('board_dim').value)">
+    <!-- <input id="board_dim" type="number" min="8" value="8" style="text-align: center;">
+    <input type="button" value="Change size of board" onclick="resetGame(document.getElementById('board_dim').value)"> -->
 </body>
 
 </html>

@@ -12,6 +12,7 @@ class CheckerGame {
         this.boardModel = new CheckerBoard(boardSize)
         this.player1CapturedPieces = 0
         this.player2CapturedPieces = 0
+        this.playerPieceColors = ["black","white"]
         //this.initializeBoard();
     }
 
@@ -23,6 +24,9 @@ class CheckerGame {
             table_div.innerHTML = ""
         }
         let table = document.createElement('table')
+        table.setAttribute('id','table_board')
+        // table.classList.add("brown")
+        table.className = "Brown"
         table_div.appendChild(table)
 
         for (let i = 0; i < n; ++i) {
@@ -43,18 +47,11 @@ class CheckerGame {
             for (let j = 0; j < n; ++j) {
                 if (this.boardModel.board[i][j]!=0){
                     let player = this.boardModel.board[i][j]
-                    document.getElementById('square_' + i + '_' + j).innerHTML = "<div class='checker_piece player" + player + "' onclick='clickPiece(this.parentNode.id)'>&nbsp;</div>"
+                    document.getElementById('square_' + i + '_' + j).innerHTML = "<div class='checker_piece player" + player + "' style = 'background-color: "+ this.playerPieceColors[player-1]+"' onclick='clickPiece(this.parentNode.id)'>&nbsp;</div>"
                 }
                 
             }
         }
-        // let d = "<input type="image" src="../src/static/images/Simpleicons_Interface_gear-wheel-in-black.svg" id="showDialog">"
-
-        // let settings = document.createElement("input")
-        // settings.setAttribute("type","image")
-        // settings.setAttribute("src","../src/static/images/Simpleicons_Interface_gear-wheel-in-black.svg")
-        // settings.setAttribute("id","showDialog")
-        // table_div.appendChild(settings)
 
         //initialize first possible moves
         this.possibleMoves = {}
@@ -131,6 +128,7 @@ class CheckerGame {
             let UIpiece = document.createElement('div')
                 UIpiece.setAttribute('onclick','clickPiece(this.parentNode.id)')
                 UIpiece.setAttribute('class',"checker_piece player" + (this.currentPlayer+1))
+                UIpiece.setAttribute("style", "background-color: "+ this.playerPieceColors[Number(this.currentPlayer)])
                 UIpiece.innerHTML="&nbsp;"
                 if (piece == '1k'||piece == '2k'){
                     UIpiece.classList.add('king')
