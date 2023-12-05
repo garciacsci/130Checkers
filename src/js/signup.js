@@ -14,7 +14,12 @@ document.getElementById('signupForm').addEventListener('submit', function(e) {
     })
     .then(response => response.json())
     .then(data => {
-        document.getElementById('message').textContent = data.message || data.error;
+        if (data.message) {
+            alert(data.message); // Show success message
+            window.location.href = 'index.html'; // Redirect to index.html
+        } else {
+            document.getElementById('message').textContent = data.error;
+        }
     })
     .catch(error => {
         console.error('Error:', error);
