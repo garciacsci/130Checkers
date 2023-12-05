@@ -30,12 +30,15 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST' && $_GET['action'] == 'login') {
     $password = filter_input(INPUT_POST, 'password', FILTER_UNSAFE_RAW);
 
     try {
-        $sql = "SELECT password FROM Players WHERE username = :username";
+        $sql = "SELECT player_id, password FROM Players WHERE username = :username";
         $stmt = $conn->prepare($sql);
         $stmt->execute(['username' => $username]);
 
         if ($row = $stmt->fetch(PDO::FETCH_ASSOC)) {
             if (password_verify($password, $row['password'])) {
+                // Set a cookie for user login
+                setcookie("user_id", $row['player_id'], time() + 3600, "/");  // Expires after 1 hour
+
                 echo json_encode(["message" => "Login successful"]);
             } else {
                 echo json_encode(["error" => "Invalid credentials"]);
@@ -47,5 +50,6 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST' && $_GET['action'] == 'login') {
         echo json_encode(["error" => $e->getMessage()]);
     }
 }
+
 
 $conn = null; // Close database connection
