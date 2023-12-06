@@ -5,7 +5,7 @@ $servername = "localhost";
 $username = "root";
 $password = "";
 $dbname = "checkers_game";
-$socket = "/Applications/XAMPP/xamppfiles/var/mysql/mysql.sock";
+$socket = "../../../var/mysql/mysql.sock";
 
 try {
     // Connect to MySQL server
