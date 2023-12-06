@@ -1,4 +1,11 @@
 document.addEventListener('DOMContentLoaded', function() {
+    fetchLeaderboardData(); // Initial fetch for the full leaderboard
+
+    document.getElementById('showMyGames').addEventListener('click', showMyGames);
+    document.getElementById('showAllGames').addEventListener('click', fetchLeaderboardData);
+});
+
+function fetchLeaderboardData() {
     fetch('../server/leaderboardAPI.php?action=getLeaderboard')
     .then(response => response.json())
     .then(data => {
@@ -7,19 +14,19 @@ document.addEventListener('DOMContentLoaded', function() {
     .catch(error => {
         console.error('Error fetching leaderboard data:', error);
     });
+}
 
-    // Event listener for 'Show My Games' button
-    document.getElementById('showMyGames').addEventListener('click', function() {
-        fetch('../server/leaderboardAPI.php?action=getMyGames&playerId=' + getCurrentPlayerId())
-        .then(response => response.json())
-        .then(data => {
-            populateLeaderboard(data);
-        })
-        .catch(error => {
-            console.error('Error fetching my games data:', error);
-        });
+function showMyGames() {
+    fetch('../server/leaderboardAPI.php?action=getMyGames&playerId=' + getCurrentPlayerId())
+    .then(response => response.json())
+    .then(data => {
+        populateLeaderboard(data);
+    })
+    .catch(error => {
+        console.error('Error fetching my games data:', error);
     });
-});
+}
+
 
 function populateLeaderboard(data) {
     const tableBody = document.getElementById('leaderboardTable').getElementsByTagName('tbody')[0];
