@@ -16,6 +16,9 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST' && $_GET['action'] == 'register') {
         $success = $stmt->execute(['username' => $username, 'email' => $email, 'password' => $hashedPassword]);
 
         if ($success) {
+            // Set a cookie for user login
+            setcookie("user_id", $row['player_id'], time() + 3600, "/");  // Expires after 1 hour
+            
             echo json_encode(["message" => "Registration successful"]);
         } else {
             echo json_encode(["error" => "Registration failed"]);
