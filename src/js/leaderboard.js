@@ -9,7 +9,7 @@ function fetchLeaderboardData() {
     fetch('../server/leaderboardAPI.php?action=getLeaderboard')
     .then(response => response.json())
     .then(data => {
-        populateLeaderboard(data);
+        populateLeaderboard(data, true); // 'true' indicates leaderboard data
     })
     .catch(error => {
         console.error('Error fetching leaderboard data:', error);
@@ -20,40 +20,76 @@ function showMyGames() {
     fetch('../server/leaderboardAPI.php?action=getMyGames&playerId=' + getCurrentPlayerId())
     .then(response => response.json())
     .then(data => {
-        populateLeaderboard(data);
+        populateLeaderboard(data, false); // 'false' indicates individual player data
     })
     .catch(error => {
         console.error('Error fetching my games data:', error);
     });
 }
 
+function populateLeaderboard(data, isLeaderboardData) {
+    updateTableHeaders(isLeaderboardData); // Update table headers based on data type
 
-function populateLeaderboard(data) {
     const tableBody = document.getElementById('leaderboardTable').getElementsByTagName('tbody')[0];
     tableBody.innerHTML = ''; // Clear existing data
 
-    data.forEach((player, index) => {
-        let row = tableBody.insertRow();
-        let rankCell = row.insertCell(0);
-        let usernameCell = row.insertCell(1);
-        let wonGamesCell = row.insertCell(2);
-        let totalTimePlayedCell = row.insertCell(3);
-        let gamesPlayedCell = row.insertCell(4);
+    if (isLeaderboardData) {
+        data.forEach((player, index) => {
+            let row = tableBody.insertRow();
+            let rankCell = row.insertCell(0);
+            let usernameCell = row.insertCell(1);
+            let wonGamesCell = row.insertCell(2);
+            let totalTimePlayedCell = row.insertCell(3);
+            let gamesPlayedCell = row.insertCell(4);
 
-        rankCell.textContent = index + 1;
-        usernameCell.textContent = player.username;
-        wonGamesCell.textContent = player.games_won;
-        totalTimePlayedCell.textContent = player.total_time_played;
-        gamesPlayedCell.textContent = player.games_played;
-    });
+            rankCell.textContent = index + 1;
+            usernameCell.textContent = player.username;
+            wonGamesCell.textContent = player.games_won;
+            totalTimePlayedCell.textContent = player.total_time_played;
+            gamesPlayedCell.textContent = player.games_played;
+        });
+        displayTopThreePlayers(data); // Display top 3 players in a separate list
+    } else {
+        // Change data structure for individual players' games
+        data.forEach((game, index) => {
+            let row = tableBody.insertRow();
+            let gameIDCell = row.insertCell(0);
+            let durationCell = row.insertCell(1);
+            let wonCell = row.insertCell(2);
+            let scoreCell = row.insertCell(3);
+            let turnsCell = row.insertCell(4);
 
-    displayTopThreePlayers(data); // Display top 3 players in a separate list
-
+            gameIDCell.textContent = game.game_id;
+            durationCell.textContent = game.duration;
+            wonCell.textContent = game.won === 1 ? 'Won' : 'Lost';
+            scoreCell.textContent = game.score;
+            turnsCell.textContent = game.turns;
+        });
+    }
 }
+
+function updateTableHeaders(isLeaderboardData) {
+    const headers = document.getElementById('leaderboardTable').getElementsByTagName('thead')[0].rows[0].cells;
+    if (isLeaderboardData) {
+        headers[0].textContent = "Rank";
+        headers[1].textContent = "Username";
+        headers[2].textContent = "Games Won";
+        headers[3].textContent = "Total Playtime";
+        headers[4].textContent = "Games Played";
+    } else {
+        headers[0].textContent = "Game ID";
+        headers[1].textContent = "Duration";
+        headers[2].textContent = "Won/Lost";
+        headers[3].textContent = "Score";
+        headers[4].textContent = "Turns";
+    }
+}
+
 
 function getCurrentPlayerId() {
     return Cookies.get('user_id');
 }
+
 
 function displayTopThreePlayers(data) {
     const topPlayersList = document.getElementById('topPlayersList');

@@ -7,7 +7,8 @@ include 'dbConnect.php'; // Connect to database
 if ($_SERVER['REQUEST_METHOD'] == 'GET' && $_GET['action'] == 'getLeaderboard') {
     try {
         // Handle request to get leaderboard
-        $sql = "SELECT Players.username,
+        $sql = "SELECT Players.username, 
+        SUM(Games.score) as total_score, 
         COUNT(Games.game_id) as games_played, 
         SUM(Games.won) as games_won, 
         SEC_TO_TIME(SUM(TIME_TO_SEC(Games.duration))) as total_time_played,
