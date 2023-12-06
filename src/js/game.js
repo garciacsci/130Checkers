@@ -8,6 +8,8 @@ function initGame(boardSize){
 
     timer = new Timer()
     timer.startTimer()
+
+    cgame.updatePieceCountUI()
 }
 function squareClicked(id){
     cgame.squareClicked(id)

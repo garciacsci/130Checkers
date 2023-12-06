@@ -10,11 +10,11 @@ showButton.addEventListener("click", () => {
 // Prevent the "confirm" button from the default behavior of submitting the form, and close the dialog with the `close()` method, which triggers the "close" event.
 confirmBtn.addEventListener("click", (event) => {
   event.preventDefault(); // We don't want to submit this fake form
-  modifyUI()
+  modifyBoardPieceUI()
   settingsDialog.close(); // Have to send the select box value here.
 });
 
-function modifyUI(){
+function modifyBoardPieceUI(){
   let boardSelect = document.getElementById("board_color_select")
   let player1PieceColor = document.getElementById("p1_piece_color_select")
   let player2PieceColor = document.getElementById("p2_piece_color_select")

@@ -27,7 +27,7 @@
                 <a href="contact.html">Contact</a>
                 <a href="help.html">Help</a>
             </div>
-            
+
         </div>
         <div class="right" id="log_out_div">
             <a href="">Log Out</a>
@@ -35,22 +35,39 @@
 
     </header>
     <div id="main_page_div">
-        <div id="main_left_div"></div>
+        <div id="main_left_div">
+            <!-- <div id="p2_pieces"> -->
+                <p class="piece_num">
+                    P2 Pieces: <span id="p2_pieces_span"></span>
+                </p>
+            <!-- </div> -->
+            <!-- <div id="p1_pieces"> -->
+                <p class="piece_num" id="p1_pieces">
+                    P1 Pieces: <span id="p1_pieces_span"></span>
+                </p>
+            <!-- </div> -->
+        </div>
+
+
         <div id="main_center_div">
-            <div id="board_table_div"></div>
-            <div id="setting_div">
-                <input type="image" src="../src/static/images/Simpleicons_Interface_gear-wheel-in-black.svg"
-                    id="showDialog">
+            <!-- board is generated here -->
+            <div id="board_and_settings">
+                <div id="board_table_div"></div>
+                <div id="setting_div">
+                    <input type="image" src="../src/static/images/Simpleicons_Interface_gear-wheel-in-black.svg"
+                        id="showDialog">
+                </div>
             </div>
+            
         </div>
 
 
         <div id="main_right_div">
             <div id="timer_div">
                 <p id="timer">0:00</p>
-                <button onclick="startTimer()">Start timer</button>
-                <button onclick="stopTimer()">Stop timer</button>
-                <button onclick="resetTimer()">Reset timer</button>
+                <!-- <button onclick="startTimer()">Start timer</button> -->
+                <!-- <button onclick="stopTimer()">Stop timer</button> -->
+                <button onclick="resetGame(cgame.boardSize)">Reset Game</button>
             </div>
 
             <!-- A modal dialog containing a form -->

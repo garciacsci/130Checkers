@@ -4,6 +4,7 @@ body {
     padding: 0;
     background-color: rgb(24,39,73);
     text-align: center;
+    color:white;
 }
 header{
     display: flex;
@@ -12,7 +13,7 @@ header{
     color: #fff;
     text-align: center;
     padding: 5px;
-    margin-bottom: 50px;
+    /* margin-bottom: 50px; */
 }
 header h1{
     color: #fff;
@@ -63,10 +64,10 @@ table{
     margin: auto;
     /* width: 75%; 
     height: 75%; */
-    width: 75vh;
-    max-width: 75vw;   
-    height: 75vh;
-    max-height: 75vw; 
+    width: 65vh;
+    max-width: 65vw;   
+    height: 65vh;
+    max-height: 65vw; 
     
 }
 
@@ -160,16 +161,35 @@ td:empty{
 }
 #main_page_div{
     display: flex;
+    margin-top: 50px;
 }
-#board_table_div{
-    flex: 3;
+
+.piece_num{
+    font-size:1.5em;
+}
+#main_center_div{
+    flex: 2;
+}
+/* #p1_pieces, #p2_pieces{
+     width:fit-content;
+} */
+#board_and_settings{
+    display:flex;
+    justify-content: center;
 }
 #main_right_div,#main_left_div{
     flex: 1;
 }
-#main_center_div{
-    display: flex;
+#p1_pieces{
+    margin-top: 50vh;
 }
+#p1_pieces,#p2_pieces{
+    margin-right:20px;
+    margin-left:20px;
+}
+/* #main_center_div{
+    display: flex;
+} */
 #setting_div{
     margin-left: 10px;
 }
@@ -178,7 +198,7 @@ td:empty{
 }
 #timer{
     font-size: 2em;
-    color:white;
+    /* color:white; */
 }
 #showDialog{
     width: 25px;

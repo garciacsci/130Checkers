@@ -10,8 +10,7 @@ class CheckerGame {
         this.possibleMovesDisplay = [];
         this.boardSize = boardSize;
         this.boardModel = new CheckerBoard(boardSize)
-        this.player1CapturedPieces = 0
-        this.player2CapturedPieces = 0
+        this.playerPieces = [this.boardModel.getPlayerPieces(1).length, this.boardModel.getPlayerPieces(2).length]
         this.playerPieceColors = ["black","white"]
         //this.initializeBoard();
     }
@@ -158,6 +157,9 @@ class CheckerGame {
 
                 let pieceOutput = this.getPieceMoves(r, c)
                 if (pieceOutput['captures'].length > 0) {
+                    this.playerPieces[Number(!this.currentPlayer)] = this.boardModel.getPlayerPieces(!this.currentPlayer+1).length
+                    this.updatePieceCountUI()
+                    
                     this.possibleMoves = {};
                     this.possibleMoves[r + '_' + c] = pieceOutput['captures']
                     return
@@ -182,7 +184,9 @@ class CheckerGame {
                 UIpiece.classList.add('king')
                 this.boardModel.board[r][c]=(this.currentPlayer+1) + 'k'
             }
-
+            // document.getElementById("p"+(this.currentPlayer+1)+"_pieces_span").innerText = this.playerPieces[0]
+            this.playerPieces[Number(!this.currentPlayer)] = this.boardModel.getPlayerPieces(!this.currentPlayer+1).length
+            this.updatePieceCountUI()
             this.currentPlayer = !this.currentPlayer;
             //get possible moves
 
@@ -198,6 +202,7 @@ class CheckerGame {
             //win or loss for current player
             
         }
+        
     }
 
     handleGameOver() {
@@ -267,10 +272,6 @@ class CheckerGame {
     getPossibleMoves() {
         // let playerPieces = document.getElementsByClassName('player' + (this.currentPlayer + 1));
         let playerPieces = this.boardModel.getPlayerPieces(this.currentPlayer + 1)
-        // let playerSquares = Array.from(playerPieces).map((x) => (x.parentElement));
-        // let allSquares = document.querySelectorAll("td[id^='square']")
-
-        //let playerSub = currentPlayer ? -1: 1;
 
         //containing all moves were it's possible to take an enemy piece
         let possibleCaptures = {}
@@ -300,6 +301,10 @@ class CheckerGame {
             this.canCapture = true
         }
         console.log(this.possibleMoves)
+    }
+    updatePieceCountUI(){
+        document.getElementById("p1_pieces_span").innerText = this.playerPieces[0]
+        document.getElementById("p2_pieces_span").innerText = this.playerPieces[1]
     }
 
     isEmptyObject(obj) {
