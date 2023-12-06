@@ -4,13 +4,14 @@
     <meta charset="UTF-8">
     <title>Checkers Game - Help</title>
     <link rel="stylesheet" href="../src/static/css/help.css">
+    <script src="../src/js/cookie.js"></script>
 </head>
 <body>
     <header>
         <div id="img_div" class="left">
             <!-- make clickable go back to home -->
             <img id="header_img"
-                src="https://dxbhsrqyrr690.cloudfront.net/sidearm.nextgen.sites/gobulldogs.com/images/sng_2022/Main_school-logo.svg">
+                src="../src/static/images/Main_school-logo.svg">
         </div>
         <div class="center" id="main_header">
             <h1>CSCI 130: Help</h1>
@@ -52,7 +53,11 @@
             </ul>
         </section>
     </main>
-
+    <script>
+        if (!Cookies.get("user_id")){
+                document.getElementById("log_out_div").style.display = "none"
+        }
+    </script>
     <!-- <footer>
         <p>&copy; 2023 Checkers Game. All rights reserved.</p>
     </footer> -->

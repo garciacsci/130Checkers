@@ -9,6 +9,7 @@
     <script src="../src/classes/CheckerGame.js"></script>
     <script src="../src/classes/Board.js"></script>
     <script src="../src/classes/Timer.js"></script>
+    <script src="../src/js/cookie.js"></script>
 </head>
 
 <body onload="initGame(8)">
@@ -16,7 +17,7 @@
         <div id="img_div" class="left">
             <!-- make clickable go back to home -->
             <img id="header_img"
-                src="https://dxbhsrqyrr690.cloudfront.net/sidearm.nextgen.sites/gobulldogs.com/images/sng_2022/Main_school-logo.svg">
+                src="../src/static/images/Main_school-logo.svg">
         </div>
         <div class="center" id="main_header">
             <h1>CSCI 130: Checkers Game</h1>
@@ -128,6 +129,11 @@
         </div>
     </div>
     <br>
+    <script>
+        if (!Cookies.get("user_id")){
+                document.getElementById("log_out_div").style.display = "none"
+        }
+    </script>
     <!-- <input id="board_dim" type="number" min="8" value="8" style="text-align: center;">
     <input type="button" value="Change size of board" onclick="resetGame(document.getElementById('board_dim').value)"> -->
 </body>
