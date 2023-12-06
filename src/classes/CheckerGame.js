@@ -216,15 +216,18 @@ class CheckerGame {
             // Send results to game server if logged in
             if (Cookies.get('user_id')) {
                 const time = convertToFullTimeFormat(document.getElementById('timer').innerHTML)
-                this.sendGameResults(Cookies.get('user_id'), time, won);
+                this.sendGameResults(Cookies.get('user_id'), time, won); 
+                //  this.sendGameResults(Cookies.get('user_id'), score, turns, time, won); TODO: Add score and turns
             }
         }
     }
 
-    sendGameResults(playerId, duration, won) {
+    sendGameResults(playerId, score, turns, duration, won) {
         // Prepare data in URL-encoded format
         const postData = new URLSearchParams({
             player_id: playerId,
+            score: score,
+            turns: turns,
             duration: duration,
             won: won ? 1 : 0 // Convert boolean to 1 or 0
         });
@@ -249,7 +252,7 @@ class CheckerGame {
             console.error("Network error: ", error);
         });
     }
-
+    
     convertToFullTimeFormat(shortTimeFormat) {
         // Split the short time format into minutes and seconds
         const [minutes, seconds] = shortTimeFormat.split(':').map(Number);
