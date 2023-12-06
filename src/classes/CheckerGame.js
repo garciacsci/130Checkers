@@ -210,8 +210,64 @@ class CheckerGame {
             let oppositePlayer = !this.currentPlayer + 1
             alert("Game over: Player " + oppositePlayer + " wins!")
             this.gameOver = 1
+
+            won = (this.currentPlayer === 0) ? 1 : 0;
+
+            // Send results to game server if logged in
+            if (Cookies.get('user_id')) {
+                const time = convertToFullTimeFormat(document.getElementById('timer').innerHTML)
+                this.sendGameResults(Cookies.get('user_id'), time, won);
+            }
         }
     }
+
+    sendGameResults(playerId, duration, won) {
+        // Prepare data in URL-encoded format
+        const postData = new URLSearchParams({
+            player_id: playerId,
+            duration: duration,
+            won: won ? 1 : 0 // Convert boolean to 1 or 0
+        });
+    
+        // Send POST request to server
+        fetch('../server/gameAPI.php?action=endGame', {
+            method: 'POST',
+            headers: {
+                'Content-Type': 'application/x-www-form-urlencoded',
+            },
+            body: postData
+        })
+        .then(response => response.json())
+        .then(data => {
+            if (data.message) {
+                console.log("Game results recorded: ", data);
+            } else {
+                console.error("Error recording game results: ", data.error);
+            }
+        })
+        .catch(error => {
+            console.error("Network error: ", error);
+        });
+    }
+
+    convertToFullTimeFormat(shortTimeFormat) {
+        // Split the short time format into minutes and seconds
+        const [minutes, seconds] = shortTimeFormat.split(':').map(Number);
+    
+        // Calculate hours, remaining minutes, and seconds
+        const hours = Math.floor(minutes / 60);
+        const remainingMinutes = minutes % 60;
+    
+        // Pad with zeros to ensure two digits
+        const paddedHours = hours.toString().padStart(2, '0');
+        const paddedMinutes = remainingMinutes.toString().padStart(2, '0');
+        const paddedSeconds = seconds.toString().padStart(2, '0');
+    
+        // Combine into full time format
+        return `${paddedHours}:${paddedMinutes}:${paddedSeconds}`;
+    }
+    
+    
 
     getPieceMoves(row, col) {
         let playerSub = this.currentPlayer ? -1 : 1;
