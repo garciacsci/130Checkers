@@ -112,8 +112,8 @@ function sortTable(columnIndex) {
 }
 
 function shouldSwitchRows(x, y, columnIndex) {
-    // Optional: Add custom comparison logic based on data type for each column
-    // Example: If the column contains numeric values or time, compare as numbers or time
+    // Might add custom comparison logic based on data type for each column
+    // So taht if the column contains numeric values or time, compare as numbers or time
     // For now, the comparison is done as strings
 
     // Convert to lowercase for case-insensitive comparison
@@ -122,4 +122,3 @@ function shouldSwitchRows(x, y, columnIndex) {
 
     return xContent > yContent; // Return true if row x should come before row y
 }
-
