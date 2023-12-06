@@ -29,7 +29,7 @@ const Cookies = {
 };
 
 function signOut(){
-    document.cookie = name + '=; expires=Thu, 01 Jan 1970 00:00:00 GMT; path=/';// Cookies.delete("user_id")
+    document.cookie = 'user_id=; expires=Thu, 01 Jan 1970 00:00:00 GMT; path=/';// Cookies.delete("user_id")
     alert("logged Out"); // Show success message
     window.location.href = './index.html'; // Redirect to index.html (path may need to be adjusted)
 }
