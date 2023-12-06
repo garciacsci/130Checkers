@@ -30,13 +30,27 @@
     </header>
     <div class="container">
         <h2>Leaderboard</h2>
+
+        <!-- Section for Top Three Players -->
+        <div id="topPlayers">
+            <h3>Top Three Players</h3>
+            <ul id="topPlayersList">
+                <!-- Top players will be populated here -->
+            </ul>
+        </div>
+
+        <!-- Button to Show Games for Current Player -->
+        <button id="showMyGames">Show My Games</button>
+
+        <!-- Leaderboard Table with Sortable Columns -->
         <table id="leaderboardTable">
             <thead>
                 <tr>
-                    <th>Rank</th>
-                    <th>Username</th>
-                    <th>Score</th>
-                    <th>Games Played</th>
+                    <th onclick="sortTable(0)">Rank</th>
+                    <th onclick="sortTable(1)">Username</th>
+                    <th onclick="sortTable(2)">Games Won</th>
+                    <th onclick="sortTable(3)">Total Playtime</th>
+                    <th onclick="sortTable(4)">Games Played</th>
                 </tr>
             </thead>
             <tbody>

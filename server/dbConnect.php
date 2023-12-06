@@ -7,14 +7,20 @@ $password = "";
 $dbname = "checkers_game";
 $socket = "/Applications/XAMPP/xamppfiles/var/mysql/mysql.sock";
 
-$dsn = "mysql:host=$servername;unix_socket=$socket;dbname=$dbname";
-
 try {
+    // Connect to MySQL server
+    $dsn = "mysql:host=$servername;unix_socket=$socket";
     $conn = new PDO($dsn, $username, $password);
     $conn->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
-    // echo "Connected successfully";
+
+    // Check if the database exists, create it if not
+    $conn->exec("CREATE DATABASE IF NOT EXISTS `$dbname`");
+    $conn->exec("USE `$dbname`");
+
+    // echo "Connected successfully and database created/selected";
 } catch(PDOException $e) {
     echo "Connection failed: " . $e->getMessage();
+    return null; // Return null to indicate failure
 }
 
 // Return connection object
