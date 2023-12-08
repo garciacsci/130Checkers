@@ -7,7 +7,8 @@ function sleep(ms) {
 
 function initGame(boardSize){
     document.getElementById("board_table_div").innerHTML = "";
-    cgame = new BotCheckerGame(boardSize);
+    // cgame = new BotCheckerGame(boardSize);
+    cgame = new CheckerGame(boardSize)
     cgame.initializeBoard();
 
     timer = new Timer();
@@ -28,6 +29,7 @@ function squareClicked(id){
         cgame.boardModel.board[firstPiece[0]][firstPiece[1]] === '2k') { // If it's the bot's turn
         botMove();
     }
+    
 }
 
 function clickPiece(id){
@@ -135,7 +137,7 @@ function botMove() {
         // clickPiece(square_string);
         sleep(500);
         clickPiece(square_string) 
-        //setTimeout(() => { clickPiece(square_string) }, 500) // hold on pal
+        // setTimeout(() => { clickPiece(square_string) }, 500) // hold on pal
 
         // possible_moves = cgame.possibleMovesDisplay;
 
@@ -144,6 +146,7 @@ function botMove() {
         //                                       'square_#_#'
         //setTimeout(() => { squareClicked(cgame.possibleMovesDisplay[0])}, 500) // wait a sec
         sleep(1000);
+        // setTimeout(() => { squareClicked(cgame.possibleMovesDisplay[0])}, 500) // wait a sec
         squareClicked(cgame.possibleMovesDisplay[0])
         
     } else {
@@ -175,7 +178,7 @@ function botMove() {
         //let determinedPiece = getObjectKeyByIndex(moves, 0); // make random int from 0 to moves.length later
 
         //                 clickPiece takes square_#_# as param
-        //setTimeout(() => { clickPiece(formattedPiece) }, 500) // hold on pal
+        // setTimeout(() => { clickPiece(formattedPiece) }, 500) // hold on pal
 
 
         let counter = 0;
@@ -201,8 +204,8 @@ function botMove() {
         
         console.log(cgame.possibleMovesDisplay[0]);
         squareToClick = cgame.possibleMovesDisplay[0];
-        //squareClicked(squareToClick);
-        setTimeout(() => { squareClicked(squareToClick)}, 500) // wait a sec 
+        squareClicked(squareToClick);
+        // setTimeout(() => { squareClicked(cgame.possibleMovesDisplay[0])}, 500) // wait a sec 
         // make random int from 0 to moves.length later
 
     }

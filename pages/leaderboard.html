@@ -25,7 +25,7 @@
             
         </div>
         <div class="right" id="log_out_div">
-            <a href="">Log Out</a>
+            <a href="" onclick="signOut()">Log Out</a>
         </div>
 
     </header>
@@ -83,7 +83,8 @@
     <script src="../src/js/leaderboard.js"></script>
     <script>
         if (!Cookies.get("user_id")){
-                document.getElementById("log_out_div").style.display = "none"
+            // document.getElementById("log_out_div").style.display = "none"
+            document.getElementById("log_out_div").innerHTML = ""
         }
     </script>
 </body>
