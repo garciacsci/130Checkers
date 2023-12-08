@@ -206,20 +206,20 @@ class CheckerGame {
             
         // }
         if (this.isEmptyObject(this.possibleMoves)) {
-            let oppositePlayer = !this.currentPlayer + 1
+            let oppositePlayer = !this.currentPlayer
             this.gameOver = 1
+            stopTimer()
 
-            let won = this.currentPlayer == false ? 1 : 0;
+            const time = this.convertToFullTimeFormat(document.getElementById('timer').innerHTML)
+            let won;
+            won = !oppositePlayer ? 1 : 0;
             let score = this.startNumPieces - this.playerPieces[Number(this.currentPlayer)]
             let turns = this.numTurns
 
-            stopTimer()
+            
             // Send results to game server if logged in
             if (Cookies.get('user_id')) {
-                const time = this.convertToFullTimeFormat(document.getElementById('timer').innerHTML)
-                // this.sendGameResults(Cookies.get('user_id'), time, won); 
-                // this.sendGameResults(Cookies.get('user_id'), score, turns, time, won); 
-                this.sendGameResults(Cookies.get('user_id'), score, turns, time, won);// TODO: Add score and turns
+                this.sendGameResults(Cookies.get('user_id'), score, turns, time, won);
             }
             setTimeout(() => { alert("Game over: Player " + oppositePlayer + " wins!") }, 100)
         }
@@ -237,7 +237,7 @@ class CheckerGame {
             score: score,
             turns: turns,
             duration: duration,
-            won: won ? 1 : 0 // Convert boolean to 1 or 0
+            won
         });
     
         // Send POST request to server
