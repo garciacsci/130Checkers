@@ -6,7 +6,7 @@
     <title>checkers</title>
     <link rel="stylesheet" href="../src/static/css/game.css">
     <script src="../src/js/botGame.js"></script>
-    <script src="../src/classes/BotCheckerGame.js"></script>
+    <script src="../src/classes/CheckerGame.js"></script>
     <script src="../src/classes/Board.js"></script>
     <script src="../src/classes/Timer.js"></script>
     <script src="../src/js/cookie.js"></script>
@@ -31,7 +31,7 @@
 
         </div>
         <div class="right" id="log_out_div">
-            <a href="index.html" onclick="signOut()">Log Out</a>
+            <a onclick="signOut()">Log Out</a>
         </div>
 
     </header>
@@ -131,7 +131,9 @@
     <br>
     <script>
         if (!Cookies.get("user_id")){
-                document.getElementById("log_out_div").style.display = "none"
+                // document.getElementById("log_out_div").style.display = "none"
+                document.getElementById("log_out_div").innerHTML = ""
+
         }
     </script>
     <!-- <input id="board_dim" type="number" min="8" value="8" style="text-align: center;">

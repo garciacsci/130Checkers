@@ -13,6 +13,8 @@ function initGame(boardSize){
 }
 function squareClicked(id){
     cgame.squareClicked(id)
+
+    
 }
 function clickPiece(id){
     cgame.clickPiece(id)

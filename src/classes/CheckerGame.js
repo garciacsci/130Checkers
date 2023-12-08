@@ -11,7 +11,9 @@ class CheckerGame {
         this.boardSize = boardSize;
         this.boardModel = new CheckerBoard(boardSize)
         this.playerPieces = [this.boardModel.getPlayerPieces(1).length, this.boardModel.getPlayerPieces(2).length]
+        this.startNumPieces = this.boardModel.getPlayerPieces(1).length
         this.playerPieceColors = ["black","white"]
+        this.numTurns=0
         //this.initializeBoard();
     }
 
@@ -188,6 +190,7 @@ class CheckerGame {
             this.playerPieces[Number(!this.currentPlayer)] = this.boardModel.getPlayerPieces(!this.currentPlayer+1).length
             this.updatePieceCountUI()
             this.currentPlayer = !this.currentPlayer;
+            this.numTurns++
             //get possible moves
 
             this.possibleMoves = {};
@@ -208,17 +211,21 @@ class CheckerGame {
     handleGameOver() {
         if (this.isEmptyObject(this.possibleMoves)) {
             let oppositePlayer = !this.currentPlayer + 1
-            alert("Game over: Player " + oppositePlayer + " wins!")
             this.gameOver = 1
 
-            won = (this.currentPlayer === 0) ? 1 : 0;
+            let won = this.currentPlayer == false ? 1 : 0;
+            let score = this.startNumPieces - this.playerPieces[Number(this.currentPlayer)]
+            let turns = this.numTurns
 
+            stopTimer()
             // Send results to game server if logged in
             if (Cookies.get('user_id')) {
                 const time = convertToFullTimeFormat(document.getElementById('timer').innerHTML)
-                this.sendGameResults(Cookies.get('user_id'), time, won); 
+                // this.sendGameResults(Cookies.get('user_id'), time, won); 
+                this.sendGameResults(Cookies.get('user_id'), score, turns, time, won); 
                 //  this.sendGameResults(Cookies.get('user_id'), score, turns, time, won); TODO: Add score and turns
             }
+            alert("Game over: Player " + oppositePlayer + " wins!")
         }
     }
 
