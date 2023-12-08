@@ -197,18 +197,14 @@ class CheckerGame {
             this.getPossibleMoves();
             console.log(this.boardModel.board)
         }
-        if (!this.gameOver) {
-            //delay to display alert after screen updates
-            setTimeout(() => { this.handleGameOver() }, 100)
-            //current player
-            //how long the game took
-            //win or loss for current player
+        // if (!this.gameOver) {
+        //     //delay to display alert after screen updates
+        //     setTimeout(() => { this.handleGameOver() }, 100)
+        //     //current player
+        //     //how long the game took
+        //     //win or loss for current player
             
-        }
-        
-    }
-
-    handleGameOver() {
+        // }
         if (this.isEmptyObject(this.possibleMoves)) {
             let oppositePlayer = !this.currentPlayer + 1
             this.gameOver = 1
@@ -220,14 +216,19 @@ class CheckerGame {
             stopTimer()
             // Send results to game server if logged in
             if (Cookies.get('user_id')) {
-                const time = convertToFullTimeFormat(document.getElementById('timer').innerHTML)
+                const time = this.convertToFullTimeFormat(document.getElementById('timer').innerHTML)
                 // this.sendGameResults(Cookies.get('user_id'), time, won); 
-                this.sendGameResults(Cookies.get('user_id'), score, turns, time, won); 
-                //  this.sendGameResults(Cookies.get('user_id'), score, turns, time, won); TODO: Add score and turns
+                // this.sendGameResults(Cookies.get('user_id'), score, turns, time, won); 
+                this.sendGameResults(Cookies.get('user_id'), score, turns, time, won);// TODO: Add score and turns
             }
-            alert("Game over: Player " + oppositePlayer + " wins!")
+            setTimeout(() => { alert("Game over: Player " + oppositePlayer + " wins!") }, 100)
         }
+        
     }
+
+    // handleGameOver() {
+        
+    // }
 
     sendGameResults(playerId, score, turns, duration, won) {
         // Prepare data in URL-encoded format
