@@ -3,7 +3,7 @@ var timer;
 
 function initGame(boardSize){
     document.getElementById("board_table_div").innerHTML = "";
-    cgame = new CheckerGame(boardSize, true); // True indicates it's a bot game
+    cgame = new BotCheckerGame(boardSize);
     cgame.initializeBoard();
 
     timer = new Timer();
@@ -35,11 +35,24 @@ function resetTimer(){
 }
 
 function botMove() {
+    // Determine if Regular or Capture moves
+    if (cgame.canCapture()) {
+        
+    } else {
+
+
+    }
+
+
+
+    
+
+
     // AI logic to decide the move
     // Placeholder for AI's move logic
     // Once the move is decided, update the board accordingly
     // For example: cgame.botMove(row, col);
 
     // Switch back to player's turn after move
-    cgame.currentPlayer = 0;
+    // handled by square click function // cgame.currentPlayer = 0;
 }

@@ -361,6 +361,7 @@ class CheckerGame {
         }
         console.log(this.possibleMoves)
     }
+    
     updatePieceCountUI(){
         document.getElementById("p1_pieces_span").innerText = this.playerPieces[0]
         document.getElementById("p2_pieces_span").innerText = this.playerPieces[1]
