@@ -110,7 +110,14 @@ class BotCheckerGame {
     }
 
     squareClicked(squareId) {
-        let idArray = squareId.split('_').slice(1, 3)
+        let idArray
+        try {
+            idArray = squareId.split('_').slice(1, 3)
+        }
+        catch {
+            console.error('squareId: ', squareId);
+        }
+        
         let r = idArray[0]
         let c = idArray[1]
 
