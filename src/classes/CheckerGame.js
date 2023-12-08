@@ -205,23 +205,6 @@ class CheckerGame {
         
     }
 
-    handleGameOver() {
-        if (this.isEmptyObject(this.possibleMoves)) {
-            let oppositePlayer = !this.currentPlayer + 1
-            alert("Game over: Player " + oppositePlayer + " wins!")
-            this.gameOver = 1
-
-            won = (this.currentPlayer === 0) ? 1 : 0;
-
-            // Send results to game server if logged in
-            if (Cookies.get('user_id')) {
-                const time = convertToFullTimeFormat(document.getElementById('timer').innerHTML)
-                this.sendGameResults(Cookies.get('user_id'), time, won); 
-                //  this.sendGameResults(Cookies.get('user_id'), score, turns, time, won); TODO: Add score and turns
-            }
-        }
-    }
-
     sendGameResults(playerId, score, turns, duration, won) {
         // Prepare data in URL-encoded format
         const postData = new URLSearchParams({
@@ -268,6 +251,25 @@ class CheckerGame {
     
         // Combine into full time format
         return `${paddedHours}:${paddedMinutes}:${paddedSeconds}`;
+    }
+
+    handleGameOver() {
+        if (this.isEmptyObject(this.possibleMoves)) {
+            let oppositePlayer = !this.currentPlayer + 1
+            let won
+            won = (this.currentPlayer == 0) ? 1 : 0;
+
+            // Send results to game server if logged in
+            if (Cookies.get('user_id')) {
+                let score = 0;
+                let turns = 0;
+                const time = this.convertToFullTimeFormat(document.getElementById('timer').innerHTML)
+                this.sendGameResults(Cookies.get('user_id'), score, turns, time, won);
+            }
+
+            alert("Game over: Player " + oppositePlayer + " wins!")
+            this.gameOver = 1
+        }
     }
     
     

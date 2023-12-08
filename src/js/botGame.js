@@ -1,6 +1,10 @@
 var cgame;
 var timer;
 
+function sleep(ms) {
+    return new Promise(resolve => setTimeout(resolve, ms));
+}
+
 function initGame(boardSize){
     document.getElementById("board_table_div").innerHTML = "";
     cgame = new BotCheckerGame(boardSize);
@@ -129,6 +133,7 @@ function botMove() {
         
         let square_string = "square_" + getPossibleMoveKey(0); // + '_' + cgame.possibleMoves[1]
         // clickPiece(square_string);
+        sleep(500);
         clickPiece(square_string) 
         //setTimeout(() => { clickPiece(square_string) }, 500) // hold on pal
 
@@ -138,6 +143,7 @@ function botMove() {
         
         //                                       'square_#_#'
         //setTimeout(() => { squareClicked(cgame.possibleMovesDisplay[0])}, 500) // wait a sec
+        sleep(1000);
         squareClicked(cgame.possibleMovesDisplay[0])
         
     } else {
@@ -174,7 +180,8 @@ function botMove() {
 
         let counter = 0;
         while(true) {
-            clickPiece(formattedPiece)
+            setTimeout(() => { clickPiece(formattedPiece) }, 500) // hold on pal
+            //clickPiece(formattedPiece)
             if (cgame.possibleMovesDisplay.length > 0) {
                 break;
             }
@@ -194,8 +201,8 @@ function botMove() {
         
         console.log(cgame.possibleMovesDisplay[0]);
         squareToClick = cgame.possibleMovesDisplay[0];
-        squareClicked(squareToClick);
-        //setTimeout(() => { squareClicked(cgame.possibleMovesDisplay[0])}, 500) // wait a sec 
+        //squareClicked(squareToClick);
+        setTimeout(() => { squareClicked(squareToClick)}, 500) // wait a sec 
         // make random int from 0 to moves.length later
 
     }
